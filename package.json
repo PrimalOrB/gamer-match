@@ -1,7 +1,7 @@
 {
   "name": "gamer-match",
   "version": "1.0.0",
-  "description": "",
+  "description": "- `git clone`\r - `cd` into directory locally\r - `npm install` to install:\r   - bcrypt\r   - connect-session-sequelize\r   - dotenv\r   - express\r   - express-handlebars\r   - express-session\r   - mysql2\r   - sequelize\r - `npm install -dev` to install dev dependencies:\r   - jest\r   - nodemon",
   "main": "server.js",
   "scripts": {
     "test": "jest",
