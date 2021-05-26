@@ -14,11 +14,6 @@ if (process.env.JAWSDB_URL) {
     dialect: 'mysql',
     port: 3306
   } );
-  // sequelize = new Sequelize( 'game_match_db','root', '7RiH6jx1OfO1', {
-  //   host: 'localhost',
-  //   dialect: 'mysql',
-  //   port: 3306
-  // } );
 }
 
 module.exports = sequelize;

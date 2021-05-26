@@ -17,6 +17,10 @@
   - jest
   - nodemon
 
+## Create database
+
+- log in to mysql and run `source db/schema.sql`
+
 ## To run
 
 - `npm start` to launch server
