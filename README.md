@@ -31,6 +31,7 @@
 
 - `npm start` to launch server
 - `npm run watch` to launch server using nodemon
+- `npm run seed` to seed database with filler data
 
 ## Current DB
 
