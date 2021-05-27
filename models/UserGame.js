@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require( 'sequelize' );
 const sequelize = require( '../config/connection' );
 
-class User extends Model {
+class UserGame extends Model {
 }
 
-User.init(
+UserGame.init(
         {
         id: {
             type: DataTypes.INTEGER,
@@ -12,23 +12,22 @@ User.init(
             primaryKey: true,
             autoIncrement: true
         },
-        username: {
+        user_id: {
             type: DataTypes.STRING,
-            allowNull: false
-        },
-        steamid: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        profileurl: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isUrl: true
+            references: {
+                model: 'user',
+                key: 'id'
             }
         },
-        avatarhash: {
+        game_id: {
             type: DataTypes.STRING,
+            references: {
+                model: 'game',
+                key: 'id'
+            }
+        },
+        playtime: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     },
@@ -38,8 +37,8 @@ User.init(
         timestamps: false, // don't automatically create timestamp fields for createdAt / updatedAt
         freezeTableName: true, // don't pluralize table name
         underscored: true, // instead of camelcase
-        modelName: 'user' // lowercase for db
+        modelName: 'usergame' // lowercase for db
     }
 );
 
-module.exports = User;
+module.exports = UserGame;
