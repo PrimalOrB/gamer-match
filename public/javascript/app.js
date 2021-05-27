@@ -2,7 +2,6 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const { User } = require('../../models/User');
 const fetch = require('node-fetch');
-const parseString = require('xml2js').parseString;
 
 //get the steam user's owned games and stats
 const getOwnedGames = function () {
