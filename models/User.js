@@ -22,7 +22,10 @@ User.init(
         },
         profileurl: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                isUrl: true
+            }
         },
         avatarhash: {
             type: DataTypes.STRING,

@@ -1,44 +1,44 @@
 const router = require( 'express' ).Router();
-const { User, Game, UserGame } = require( '../../models' );
+const { Game, User, UserGame } = require( '../../models' );
 
-    // GET /api/users
+    // GET /api/games
 router.get('/', ( req, res ) => {
-    User.findAll( {
+    Game.findAll( {
         include: [
                 {
-                    model: Game,
+                    model: User,
                     through: UserGame,
-                    as: 'games_played'
+                    as: 'played_by'
                 }
             ]
         } )
-        .then( dbUserData => res.json( dbUserData ) )
+        .then( dbGameData => res.json( dbGameData ) )
         .catch( err => {
             console.log( err );
             res.status( 500 ).json( err );
         } );
 } );
 
-    // GET /api/users/1
+    // GET /api/games/1
 router.get('/:id', ( req, res ) => {
-    User.findOne( {
+    Game.findOne( {
         include: [
             {
-                model: Game,
+                model: User,
                 through: UserGame,
-                as: 'games_played'
+                as: 'played_by'
             }
         ],
         where: {
             id: req.params.id
         }
     } )
-    .then( dbUserData => {
-        if( !dbUserData ) {
-            res.status( 404 ).json( { message: 'No user found with this id' } );
+    .then( dbGameData => {
+        if( !dbGameData ) {
+            res.status( 404 ).json( { message: 'No game found with this id' } );
             return;
         }
-        res.json( dbUserData );
+        res.json( dbGameData );
     } )
     .catch( err => {
         console.log( err );
@@ -46,35 +46,35 @@ router.get('/:id', ( req, res ) => {
     })
 } );
 
-    // POST /api/users
+    // POST /api/games
 router.post('/', ( req, res ) => {
-    // expects { username: 'bbb', steamid: 'bbb', profileurl: 'bbb', avatarhash: 'bbb' }
-    User.create( { 
-        username: req.body.username,
-        steamid: req.body.steamid,
-        profileurl: req.body.profileurl,
-        avatarhash: req.body.avatarhash,
+    // expects { appid: 1234, name: 'bbb', img_icon_url: 'bbb', img_logo_url: 'bbb' }
+    Game.create( { 
+        appid: req.body.appid,
+        name: req.body.name,
+        img_icon_url: req.body.img_icon_url,
+        img_logo_url: req.body.img_logo_url,
     } )
-    .then( dbUserData =>  res.json( dbUserData ) )
+    .then( dbGameData =>  res.json( dbGameData ) )
     .catch( err => {
         console.log( err )
         res.status( 500 ).json( err );
     } );
 } );
 
-    // DELETE /api/users/1
+    // DELETE /api/games/1
 router.delete('/:id', ( req, res ) => {
-    User.destroy( {
+    Game.destroy( {
         where: {
             id: req.params.id
         }
     } )
-    .then( dbUserData => {
-        if( !dbUserData ){
-            res.status( 404 ).json( { message: 'No user found with this id' } );
+    .then( dbGameData => {
+        if( !dbGameData ){
+            res.status( 404 ).json( { message: 'No game found with this id' } );
             return;
         }
-        res.json( dbUserData ); 
+        res.json( dbGameData ); 
     } )
     .catch( err => {
         console.log( err );
