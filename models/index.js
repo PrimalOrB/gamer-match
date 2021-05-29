@@ -3,7 +3,8 @@ const Game = require( './Game' );
 const UserGame = require( './UserGame' );
 
 User.hasMany( UserGame, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE' // when user is deleted, their UserGame records are deleted also
 } );
 
 Game.hasMany( UserGame, {
@@ -14,25 +15,21 @@ User.belongsToMany( Game, {
     through: UserGame,
     as: 'games_played',
     foreignKey: 'user_id',
-    onDelete: 'SET NULL'
 } );
     
 Game.belongsToMany( User, {
     through: UserGame,
     as: 'played_by',
     foreignKey: 'game_id',
-    onDelete: 'SET NULL'
 } );
 
 UserGame.belongsTo( User, {
     foreignKey: 'user_id',
-    onDelete: 'SET NULL',
     as: 'played_by'
 } );
 
 UserGame.belongsTo( Game, {
     foreignKey: 'game_id',
-    onDelete: 'SET NULL',
     as: 'playing'
 } );
 
