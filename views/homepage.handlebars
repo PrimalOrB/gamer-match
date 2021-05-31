@@ -1,62 +1,7 @@
 <ol class="games-list">
-  {{#each game }} 
+  {{#each games as |game| }} 
   <li>
     {{> games-list game }}
   </li>
   {{/each}}
-  {{!-- placeholder start --}}
-  {{!-- <div class = 'card'>
-    <article class = 'game'>
-      <div class = 'logo'>
-        <img src = 'https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/half-life-icon.png' alt = 'Logo of Half Life'>
-      </div>
-      <div class = 'title'>
-        <a href = 'https://store.steampowered.com/app/70/HalfLife/' target = '_blank'>Half Life</a>
-        <span>Hours Played: </span>
-      </div>
-    </article>
-  </div> --}}
-  <a href = '/game' >
-    <div class = 'card'>
-      <article class = 'card_content'>
-        <div class = 'card_title'>
-          <img src = '{{img_icon_url}}' alt = 'Logo of {{name}}'>
-          <p >{{name}}</p>
-        </div>
-        <div class = 'card_text'>
-          <span>Hours Played: {{hours_played}}</span>
-        </div>
-      </article>
-    </div>
-  </a>
-  <a href = 'https://www.amazon.ca/' >
-    <div class = 'card'>
-        <article class = 'card_content'>
-          <div class = 'card_title'>
-            <img src = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3648106f-36c8-4a88-8139-40330bb03b0f/de4783r-75f54c6d-f9c4-4ac8-af26-0a7e07b07d7d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzM2NDgxMDZmLTM2YzgtNGE4OC04MTM5LTQwMzMwYmIwM2IwZlwvZGU0Nzgzci03NWY1NGM2ZC1mOWM0LTRhYzgtYWYyNi0wYTdlMDdiMDdkN2QucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZJYYJZIWYfNMyRoE2S58-GjSuhr1KvwY48puzbJzqG8' alt = 'Logo of Cyberpunk 2077'>
-            <p >Cyberpunk 2077</p>
-          </div>
-          <div class = 'card_text'>
-            <span>Hours Played: </span>
-          </div>
-        </article>
-      
-    </div>
-  </a>
-  <a href = 'https://www.amazon.ca/' >
-    <div class = 'card'>
-        <article class = 'card_content'>
-          <div class = 'card_title'>
-            <img src = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3648106f-36c8-4a88-8139-40330bb03b0f/de4783r-75f54c6d-f9c4-4ac8-af26-0a7e07b07d7d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzM2NDgxMDZmLTM2YzgtNGE4OC04MTM5LTQwMzMwYmIwM2IwZlwvZGU0Nzgzci03NWY1NGM2ZC1mOWM0LTRhYzgtYWYyNi0wYTdlMDdiMDdkN2QucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZJYYJZIWYfNMyRoE2S58-GjSuhr1KvwY48puzbJzqG8' alt = 'Logo of Cyberpunk 2077'>
-            <p >Cyberpunk 2077</p>
-          </div>
-          <div class = 'card_text'>
-            <span>Hours Played: </span>
-          </div>
-        </article>
-      
-    </div>
-  </a>
-  
-  {{!-- placeholder end --}}
 </ol>

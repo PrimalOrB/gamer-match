@@ -108,3 +108,5 @@ dist
 
 # .env  
 .env
+
+.seeds2/

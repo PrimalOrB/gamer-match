@@ -1,47 +1,15 @@
 
-<a href = 'https://store.steampowered.com/app/{{appid}}' target = '_blank'>
-    <div class = 'card'>
-      <article class = 'game card_content'>
-        <div class = 'card_title'> 
-          <img src = '{{img_icon_url}}' alt = 'Logo of {{name}}'>
-          <p >{{name}}</p>
-        </div>
-        <div class = 'card_text'>
-          <span>Hours Played: {{hours_played}}</span>
-        </div>
-      </article>
-    </div>
-</a>
+{{> games-list game}}
 
 <div class = 'subheader'>
  <h2> People who own this game</h2>
 </div>
 
-<a href = '/user' >
-    <div class = 'card'>
-        <article class = 'user card_content'>
-            <div class = 'card_title'>
-                <p>UltronTest    36179435465788410</p>
-            </div>
-            <div class = 'card_text'>
-              <p>Hours Played: 65</sp>
-            </div>
-        </article>
-    </div>
-</a>
-<a href = '/user' >
-    <div class = 'card'>
-        <article class = 'user card_content'>
-            <div class = 'card_title'>
-                <p>UltronTest    36179435465788410</p>
-            </div>
-            <div class = 'card_text'>
-              <p>Hours Played: 65</p>
-            </div>
-        </article>
-    </div>
-</a>
-
+{{#each game.played_by as |user| }} 
+  <li>
+    {{> users-list user }}
+  </li>
+{{/each}}
 
 {{!-- {{> users-list game.played_by}} 
 
