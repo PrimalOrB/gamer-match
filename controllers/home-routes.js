@@ -1,14 +1,123 @@
 const router = require('express').Router();
+const { User, Game, UserGame } = require('../models');
 
-router.get('/', (req, res) => {
-  res.render('homepage');
+router.get('/', ( req, res ) => {
+  Game.findAll({
+      include: [{
+                  model: User,
+                  through: UserGame,
+                  as: 'played_by'
+              }]
+      })
+      .then(dbGameData => {
+        const games = dbGameData.map(game => game.get({ plain: true }));
+  
+        res.render('homepage', {
+          games,
+          // loggedIn: req.session.loggedIn
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 router.get('/login', (req,res) => {
-    // if (req.session.loggedin) {
-    //     res.redirect('/');
-    //     return;// return to the homepage if we are already loggined in
-    // }
-    res.render('login');
-})
+  // if (req.session.loggedin) {
+  //     res.redirect('/');
+  //     return;// return to the homepage if we are already loggined in
+  // }
+  res.render('login');
+});
+
+router.get('/game/:id', (req,res) => {
+    Game.findOne({
+        include: [
+            {
+                model: User,
+                //attributes: ['id','username','steamid','profileurl','avatarhash'],
+                through: UserGame,
+                as: 'played_by'
+            }
+        ],
+        where: {
+            id: req.params.id
+        }
+    } )
+    .then(dbGameData => {
+      if (!dbGameData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+
+      const game = dbGameData.get({ plain: true });
+
+      res.render('single-game', {
+        game
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
+router.get('/user/:id', (req,res) => {
+  User.findOne({
+      include: [
+          {
+            model: Game,
+            //attributes: ['id', 'appid', 'name', 'img_icon_url', 'img_logo_url'],
+            through: UserGame,
+            as: 'games_played'
+          }
+      ],
+      where: {
+          id: req.params.id
+      }
+  } )
+  .then(dbUserData => {
+    if (!dbUserData) {
+      res.status(404).json({ message: 'No user found with this id' });
+      return;
+    }
+
+    const user = dbUserData.get({ plain: true });
+
+    res.render('single-user', {
+      user
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+//      ***catch unspeced urls***
+router.get('*', ( req, res ) => {
+  Game.findAll({
+      include: [{
+                  model: User,
+                  through: UserGame,
+                  as: 'played_by'
+              }]
+      })
+      .then(dbGameData => {
+        const games = dbGameData.map(game => game.get({ plain: true }));
+  
+        res.render('homepage', {
+          games,
+          // loggedIn: req.session.loggedIn
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
+
 module.exports = router;

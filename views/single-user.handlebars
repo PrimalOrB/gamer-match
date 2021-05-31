@@ -1,0 +1,13 @@
+
+{{> users-list user}}
+
+<div class = 'subheader'>
+ <h2>Games this user owns</h2>
+</div>
+
+{{#each user.games_played as |game| }} 
+  <li>
+    {{> games-list game }}
+  </li>
+{{/each}}
+

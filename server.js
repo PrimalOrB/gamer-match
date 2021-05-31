@@ -7,6 +7,10 @@ const SteamStrategy = require('./lib/passport-steam').Strategy;
 const util = require('util')
 const session = require('express-session')
 const ensureAuthenticated = ( './utils/helpers.js')
+const exphbs = require('express-handlebars');// for Handlebars.js
+//const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ });
+
 require( 'dotenv' ).config();
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -54,11 +58,14 @@ passport.use(new SteamStrategy({
  }
 ));
 
+// configure Handlebars
+app.engine('handlebars', hbs.engine);// for Handlebars.js
+app.set('view engine', 'handlebars');
 
 // configure Express
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
-// app.use( express.static( path.join( __dirname, 'public' ) ) );
+app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 app.use( routes );
 
@@ -72,7 +79,8 @@ app.use(session({
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname + '/../../public'));
+//app.use(express.static(__dirname + '/../../public'));
+app.use(express.static(path.join(__dirname,'..','public')));
 
 sequelize.sync( { force: false } ).then( () => {
     app.listen( PORT, () => console.log( 'Now listening' ) );

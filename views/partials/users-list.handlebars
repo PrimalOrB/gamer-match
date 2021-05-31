@@ -1,0 +1,17 @@
+{{!-- user passed from single-game.handlebars --}}
+<a href = '/user/{{id}}'>
+    <div class = 'card'>
+        <article class = 'user card_content'>
+            <div class = 'card_title'>
+                <p>{{username}}   {{steamid}}</p>
+            </div>
+            <div class = 'card_text'>
+                <p>Hours Played: {{hours_played}}</p>
+            </div>
+        </article>
+    </div>
+</a>
+
+
+{{!-- link structure for steam profile
+<a href = '{{profileurl}}' target = '_blank'></a> --}}

@@ -1,1 +1,7 @@
-<div>You are on the homepage</div>
+<ol class="games-list">
+  {{#each games as |game| }} 
+  <li>
+    {{> games-list game }}
+  </li>
+  {{/each}}
+</ol>

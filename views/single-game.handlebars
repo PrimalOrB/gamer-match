@@ -1,0 +1,18 @@
+
+{{> games-list game}}
+
+<div class = 'subheader'>
+ <h2> People who own this game</h2>
+</div>
+
+{{#each game.played_by as |user| }} 
+  <li>
+    {{> users-list user }}
+  </li>
+{{/each}}
+
+{{!-- {{> users-list game.played_by}} 
+
+{{!-- player_by = user --}}
+
+game card could link to steam store page***
