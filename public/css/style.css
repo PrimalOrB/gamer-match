@@ -21,11 +21,14 @@ a {
   text-decoration: none;
   color: #5B0B66;
   font-weight: bold;
+  font-size: 100%;
   transition: color .1s;
-  display: block;
+  display: flex;
 }
 
-
+li{
+  list-style: none;
+}
 
 a:hover {
   color: #C921E0;
@@ -151,7 +154,11 @@ main {
   margin: 12px 50px 12px 50px;
   padding : 20px;
   background-color:#fff5eb;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
+
 
 .card:hover {
   background-color: #7FB8FF;
@@ -191,9 +198,8 @@ main {
 }
 
 .card_title{
-  display: flex;
   align-items: center;
-  font-size: 175%;
+  font-size: 100%;
 }
 
 footer {
