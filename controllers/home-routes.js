@@ -36,7 +36,7 @@ router.get('/game/:id', (req,res) => {
         include: [
             {
                 model: User,
-                attributes: ['id','username','steamid','profileurl','avatarhash'],
+                //attributes: ['id','username','steamid','profileurl','avatarhash'],
                 through: UserGame,
                 as: 'played_by'
             }
@@ -69,7 +69,7 @@ router.get('/user/:id', (req,res) => {
       include: [
           {
             model: Game,
-            attributes: ['id', 'appid', 'name', 'img_icon_url', 'img_logo_url'],
+            //attributes: ['id', 'appid', 'name', 'img_icon_url', 'img_logo_url'],
             through: UserGame,
             as: 'games_played'
           }
