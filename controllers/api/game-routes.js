@@ -62,6 +62,61 @@ router.post('/', ( req, res ) => {
     } );
 } );
 
+    // POST /api/games
+router.post('/check', ( req, res ) => {
+    // expects { appid: 1234, name: 'bbb', img_icon_url: 'bbb', img_logo_url: 'bbb' }
+    const data = req.body
+
+        // object to collect game data 
+    const games = []
+    
+        // promise check each index against current games list
+    var promises = data.map( (x, i) => {
+        return Game.findOne( {
+                    where: {
+                        appid: x.appid
+                    }
+                } )
+            .then(dbUserGameData => {
+                    // if game does not exist
+                if( !dbUserGameData ) {
+                        // create new game
+                    Game.create( { 
+                        appid: x.appid,
+                        name: x.name,
+                        img_icon_url: x.img_icon_url,
+                        img_logo_url: x.img_logo_url,
+                    } )
+                    .then( dbGameDataNew =>  {
+                            // post current index, and the id of the newly created game
+                        games.push( { input_index: i, game_id: dbGameDataNew.dataValues.id } )
+                    } )
+                    .catch( err => {
+                        console.log( err )
+                        res.status( 500 ).json( err );
+                    } );
+                    return;
+                }
+                    // push current index and matching game id
+                games.push( { input_index: i, game_id: dbUserGameData.dataValues.id } )
+                return;
+            } ) 
+            .catch( err => {
+                console.log( err )
+                res.status( 500 ).json( err );
+            } );
+      } )
+
+        // once resolved, return the games array
+      Promise.all( promises )
+      .then( () => {
+          res.json( games )
+      } )
+} );
+
+
+
+
     // DELETE /api/games/1
 router.delete('/:id', ( req, res ) => {
     Game.destroy( {
