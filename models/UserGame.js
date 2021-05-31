@@ -21,6 +21,7 @@ UserGame.init(
         },
         game_id: {
             type: DataTypes.STRING,
+            allowNull: true,
             references: {
                 model: 'game',
                 key: 'id'
@@ -28,7 +29,7 @@ UserGame.init(
         },
         playtime: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         }
     },
     {
