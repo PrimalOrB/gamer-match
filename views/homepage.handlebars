@@ -1,7 +1,16 @@
 <ol class="games-list">
   {{#each games as |game| }} 
   <li>
-    {{> games-list game }}
+      <a href = '/game/{{id}}'>
+        <div class = 'card'>
+          <article class = 'game card_content'>
+            <div class = 'card_title'> 
+              <img src = '{{img_icon_url}}' alt = 'Logo of {{name}}'>
+            </div>
+            <div><p >{{name}}</p></div>
+          </article>
+        </div>
+      </a>
   </li>
   {{/each}}
 </ol>
