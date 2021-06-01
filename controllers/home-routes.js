@@ -37,17 +37,23 @@ router.get('/', (req, res) => {
       }
       
 
-      res.render('homepage', {
-        games,
-        user: req.user,
-        // loggedIn: req.session.loggedIn
+        console.log( req.user )
+  
+        res.render('homepage', {
+          games,
+          user: req.user
+          // loggedIn: req.session.loggedIn
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
       });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
 
 router.get('/login', (req, res) => {
   // if (req.session.loggedin) {

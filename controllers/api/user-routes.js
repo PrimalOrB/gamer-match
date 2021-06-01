@@ -94,15 +94,15 @@ router.post('/check', ( req, res ) => {
     const user = {}
     
         // promise check each index against current games list
-    var promises = data.map( (x, i) => {
+    const promises = data.map( x => {
         return User.findOne( {
                     where: {
                         steamid: x.steamid
                     }
                 } )
             .then(dbUserData => {
-                    // if user does not exist
-                if( !dbUserData ) {
+                // if user does not exist
+                if( !dbUserData ) {    // need to figure out how to async this
                         // create new user
                     return User.create( { 
                         username: x.username,
@@ -119,8 +119,8 @@ router.post('/check', ( req, res ) => {
                         res.status( 500 ).json( err );
                     } );
                 }
-                    // push current index and matching user id
-                    user.user_id= dbUserData.dataValues.id 
+                // push current index and matching user id
+                user.user_id= dbUserData.dataValues.id 
                 return;
             } ) 
             .catch( err => {
@@ -134,7 +134,28 @@ router.post('/check', ( req, res ) => {
       .then( () => {
           res.json( user )
       } )
+    
 } );
+
+// // if user does not exist
+// if( !dbUserData ) {
+//     // create new user
+// User.create( { 
+//     username: x.username,
+//     steamid: x.steamid,
+//     profileurl: x.profileurl,
+//     avatarhash: x.avatarhash,
+// } )
+// .then( dbUserDataNew =>  {
+//         // post current index, and the id of the newly created user
+//         user.user_id= dbUserDataNew.dataValues.id
+// } )
+// .catch( err => {
+//     console.log( err )
+//     res.status( 500 ).json( err );
+// } );
+// return;
+// }
 
 
 

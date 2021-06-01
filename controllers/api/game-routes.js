@@ -64,7 +64,7 @@ router.post('/', ( req, res ) => {
 
     // POST /api/games/check
 router.post('/check', ( req, res ) => {
-    // expects array of games
+    // expects array 
     const data = req.body
 
         // object to collect game data 
@@ -81,7 +81,7 @@ router.post('/check', ( req, res ) => {
                     // if game does not exist
                 if( !dbUserGameData ) {
                         // create new game
-                   return Game.create( { 
+                    return Game.create( { 
                         appid: x.appid,
                         name: x.name,
                         img_icon_url: x.img_icon_url,
@@ -95,7 +95,6 @@ router.post('/check', ( req, res ) => {
                         console.log( err )
                         res.status( 500 ).json( err );
                     } );
-
                 }
                     // push current index and matching game id
                 games.push( { input_index: i, game_id: dbUserGameData.dataValues.id } )
