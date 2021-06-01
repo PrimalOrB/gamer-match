@@ -23,7 +23,7 @@ const getOwnedGames = function (steamID, user_id) {
 
 const postGameData = function (playerGameData, user_id) {
   //loop through the playerGameData array and grab only the relevant info
-  var counter = 0;
+  var counter = 1;
   var gameArray = [];
   playerGameData.forEach(function (games) {
     var game = {
@@ -54,25 +54,29 @@ const postGameData = function (playerGameData, user_id) {
 
 const postUserGameData = function (gameArray, user_id, playerGameData) {
   let gameInfo = [];
+  let games = {};
   for (i = 0; i < gameArray.length; i++) {
     gameInfo.push({ 
       user_id, 
-      gameids: 
+      gameIds: [
         {
-          game: gameArray[i], 
-          playtime: playerGameData[i].playtime_forever
-        }
-      
-    })
+          game: gameArray[i],
+          playtime: playerGameData[i].playtime_forever  
+        } 
+      ]
+      }
+    )
+    games = gameInfo[i];
+    console.log(games);
   }
-  console.log(gameInfo);
+
   fetch('http://localhost:3001/api/usergames', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(gameInfo)
+      body: JSON.stringify(games)
     }).then(response => {
       if (response.ok) {
         return response.json();
