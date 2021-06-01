@@ -237,3 +237,19 @@ img {
   
   padding: auto;
 }
+
+.loader {
+  border: 16px solid #DFB4E5; 
+  border-top: 16px solid #5B0B66; 
+  border-bottom: 16px solid #5B0B66;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: 20vw auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
