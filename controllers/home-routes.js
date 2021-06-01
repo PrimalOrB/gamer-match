@@ -28,7 +28,8 @@ router.get('/login', (req,res) => {
   //     res.redirect('/');
   //     return;// return to the homepage if we are already loggined in
   // }
-  res.render('login');
+  // res.render('login');
+  res.redirect( '/auth/steam/' );
 });
 
 router.get('/dashboard', (req,res) => {

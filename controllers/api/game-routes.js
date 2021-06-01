@@ -114,9 +114,6 @@ router.post('/check', ( req, res ) => {
       } )
 } );
 
-
-
-
     // DELETE /api/games/1
 router.delete('/:id', ( req, res ) => {
     Game.destroy( {
