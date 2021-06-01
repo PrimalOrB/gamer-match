@@ -13,7 +13,7 @@ router.get('/', ( req, res ) => {
         const games = dbGameData.map(game => game.get({ plain: true }));
   
         res.render('homepage', {
-          games,
+          games
           // loggedIn: req.session.loggedIn
         });
       })
@@ -32,6 +32,41 @@ router.get('/login', (req,res) => {
   res.redirect( '/auth/steam/' );
 });
 
+router.get('/dashboard', (req,res) => {
+  User.findOne({
+    include: [
+        {
+          model: Game,
+          attributes: ['id', 'appid', 'name', 'img_icon_url', 'img_logo_url'],
+          through: UserGame,
+          as: 'games_played',
+          include: {
+            model : UserGame,
+            attributes: ['playtime']
+          }
+        }
+    ],
+     where: {
+         id: 5//sessionid
+     }
+  })
+  .then(dbUserData => {
+    if (!dbUserData) {
+      res.status(404).json({ message: 'No user found with this id' });
+    return;
+    }
+
+    const user = dbUserData.get({ plain: true });
+    res.render('dashboard', {
+      user
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
 router.get('/game/:id', (req,res) => {
     Game.findOne({
         include: [
@@ -39,7 +74,11 @@ router.get('/game/:id', (req,res) => {
                 model: User,
                 //attributes: ['id','username','steamid','profileurl','avatarhash'],
                 through: UserGame,
-                as: 'played_by'
+                as: 'played_by',
+                include: {
+                  model : UserGame,
+                  attributes: ['playtime']
+                }
             }
         ],
         where: {
@@ -53,7 +92,6 @@ router.get('/game/:id', (req,res) => {
       }
 
       const game = dbGameData.get({ plain: true });
-
       res.render('single-game', {
         game
       });
@@ -70,9 +108,13 @@ router.get('/user/:id', (req,res) => {
       include: [
           {
             model: Game,
-            //attributes: ['id', 'appid', 'name', 'img_icon_url', 'img_logo_url'],
+            attributes: ['id', 'appid', 'name', 'img_icon_url', 'img_logo_url'],
             through: UserGame,
-            as: 'games_played'
+            as: 'games_played',
+            include: {
+              model : UserGame,
+              attributes: ['playtime']
+            }
           }
       ],
       where: {
@@ -86,7 +128,6 @@ router.get('/user/:id', (req,res) => {
     }
 
     const user = dbUserData.get({ plain: true });
-
     res.render('single-user', {
       user
     });
@@ -98,27 +139,30 @@ router.get('/user/:id', (req,res) => {
 });
 
 //      ***catch unspeced urls***
-router.get('*', ( req, res ) => {
-  Game.findAll({
-      include: [{
-                  model: User,
-                  through: UserGame,
-                  as: 'played_by'
-              }]
-      })
-      .then(dbGameData => {
-        const games = dbGameData.map(game => game.get({ plain: true }));
-  
-        res.render('homepage', {
-          games,
-          // loggedIn: req.session.loggedIn
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-});
+// router.get('*', ( req, res ) => {
+//   Game.findAll({
+//       include: [{
+//                   model: User,
+//                   through: UserGame,
+//                   as: 'played_by',
+//                   include: {
+//                     model : UserGame,
+//                     attributes: ['playtime']
+//                   }
+//               }]
+//       })
+//       .then(dbGameData => {
+//         const games = dbGameData.map(game => game.get({ plain: true }));
+//         res.render('homepage', {
+//           games
+//           // loggedIn: req.session.loggedIn
+//         });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//       });
+// });
 
 
 module.exports = router;
