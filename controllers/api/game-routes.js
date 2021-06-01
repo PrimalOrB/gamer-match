@@ -62,9 +62,9 @@ router.post('/', ( req, res ) => {
     } );
 } );
 
-    // POST /api/games
+    // POST /api/games/check
 router.post('/check', ( req, res ) => {
-    // expects { appid: 1234, name: 'bbb', img_icon_url: 'bbb', img_logo_url: 'bbb' }
+    // expects array of games
     const data = req.body
 
         // object to collect game data 

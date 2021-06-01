@@ -27,7 +27,7 @@ router.get('/steam/return',
   }, 
   passport.authenticate('steam', { failureRedirect: '/' }),
   function(req, res) {
-    res.json( {message: 'redirect'})
+    // res.json( {message: 'redirect'})
     res.redirect('/');
   });
 

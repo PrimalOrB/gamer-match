@@ -43,8 +43,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new SteamStrategy({
    returnURL: 'http://localhost:3001/auth/steam/return',    // will need updating
    realm: 'http://localhost:3001/',                         // will need updating
-  //  apiKey: process.env.API_KEY                              // ensure is in your .env
-  apiKey: 'FEDE3AC789667FF7925534F8B6237308'
+   apiKey: process.env.API_KEY                              // ensure is in your .env
  },
  function(identifier, profile, done) {
    // asynchronous verification, for effect...

@@ -83,6 +83,61 @@ router.put('/:id', ( req, res ) => {
     } );
 } );
 
+
+    // POST /api/users/check
+router.post('/check', ( req, res ) => {
+    // user: {steamid: steamid, usernamg: personaname, profileurl: profileurl, avatarthash: avatarhassh}
+    const data = [ req.body ]
+
+        // object to collect game data 
+    const user = {}
+    
+        // promise check each index against current games list
+    var promises = data.map( (x, i) => {
+        return User.findOne( {
+                    where: {
+                        steamid: x.steamid
+                    }
+                } )
+            .then(dbUserData => {
+                    // if user does not exist
+                if( !dbUserData ) {
+                        // create new user
+                    User.create( { 
+                        username: x.username,
+                        steamid: x.steamid,
+                        profileurl: x.profileurl,
+                        avatarhash: x.avatarhash,
+                    } )
+                    .then( dbUserDataNew =>  {
+                            // post current index, and the id of the newly created user
+                            user.user_id= dbUserDataNew.dataValues.id
+                    } )
+                    .catch( err => {
+                        console.log( err )
+                        res.status( 500 ).json( err );
+                    } );
+                    return;
+                }
+                    // push current index and matching user id
+                    user.user_id= dbUserData.dataValues.id 
+                return;
+            } ) 
+            .catch( err => {
+                console.log( err )
+                res.status( 500 ).json( err );
+            } );
+      } )
+
+        // once resolved, return the games array
+      Promise.all( promises )
+      .then( () => {
+          res.json( user )
+      } )
+} );
+
+
+
     // DELETE /api/users/1
 router.delete('/:id', ( req, res ) => {
     User.destroy( {
