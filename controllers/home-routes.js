@@ -11,9 +11,12 @@ router.get('/', ( req, res ) => {
       })
       .then(dbGameData => {
         const games = dbGameData.map(game => game.get({ plain: true }));
+
+        console.log( req )
   
         res.render('homepage', {
           games,
+          user: req.user
           // loggedIn: req.session.loggedIn
         });
       })
