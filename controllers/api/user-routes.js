@@ -1,5 +1,6 @@
 const router = require( 'express' ).Router();
 const { User, Game, UserGame } = require( '../../models' );
+const fetch = require('node-fetch');
 
     // GET /api/users
 router.get('/', ( req, res ) => {
@@ -103,7 +104,7 @@ router.post('/check', ( req, res ) => {
                     // if user does not exist
                 if( !dbUserData ) {
                         // create new user
-                    User.create( { 
+                    return User.create( { 
                         username: x.username,
                         steamid: x.steamid,
                         profileurl: x.profileurl,
@@ -117,7 +118,6 @@ router.post('/check', ( req, res ) => {
                         console.log( err )
                         res.status( 500 ).json( err );
                     } );
-                    return;
                 }
                     // push current index and matching user id
                     user.user_id= dbUserData.dataValues.id 
