@@ -12,7 +12,7 @@ router.get('/', ( req, res ) => {
       .then(dbGameData => {
         const games = dbGameData.map(game => game.get({ plain: true }));
 
-        console.log( req )
+        console.log( req.user )
   
         res.render('homepage', {
           games,
