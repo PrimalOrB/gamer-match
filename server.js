@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
+
 /**
  * Basic example demonstrating passport-steam usage within Express framework
  */
@@ -40,9 +41,10 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
 passport.use(new SteamStrategy({
-   returnURL: 'http://localhost:3000/auth/steam/return',    // will need updating
-   realm: 'http://localhost:3000/',                         // will need updating
-   apiKey: process.env.API_KEY                              // ensure is in your .env
+   returnURL: 'http://localhost:3001/auth/steam/return',    // will need updating
+   realm: 'http://localhost:3001/',                         // will need updating
+  //  apiKey: process.env.API_KEY                              // ensure is in your .env
+  apiKey: 'FEDE3AC789667FF7925534F8B6237308'
  },
  function(identifier, profile, done) {
    // asynchronous verification, for effect...
@@ -57,7 +59,6 @@ passport.use(new SteamStrategy({
    });
  }
 ));
-
 // configure Handlebars
 app.engine('handlebars', hbs.engine);// for Handlebars.js
 app.set('view engine', 'handlebars');
@@ -66,8 +67,6 @@ app.set('view engine', 'handlebars');
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
-
-app.use( routes );
 
 app.use(session({
    secret: 'your secret',
@@ -82,6 +81,9 @@ app.use(passport.session());
 //app.use(express.static(__dirname + '/../../public'));
 app.use(express.static(path.join(__dirname,'..','public')));
 
+app.use( routes );
+
 sequelize.sync( { force: false } ).then( () => {
     app.listen( PORT, () => console.log( 'Now listening' ) );
 } );
+
