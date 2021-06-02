@@ -75,7 +75,7 @@ router.get('/dashboard', (req, res) => {
       },
     ],
     where: {
-      id: 5, //sessionid
+      id: req.session.user_id
     },
   })
     .then((dbUserData) => {
