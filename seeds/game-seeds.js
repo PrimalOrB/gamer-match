@@ -15,7 +15,7 @@ const gameData = [
   }	,
   {
     "appid": "1091500",
-    "name": "Cyberpunk 207",
+    "name": "Cyberpunk 2077",
     "img_icon_url": "5d4fea110b0e85bd80410c090ba7fe28c20d7b02",
     "img_logo_url": "6d5bb4dfbf02724b46235e22e7718a52b2c58149"
   }	,
@@ -31,6 +31,12 @@ const gameData = [
     "img_icon_url": "0ea1d285a8ee6fbeef0e8f7f3b2d7fa4cbcb423b",
     "img_logo_url": "c089970f23d5da32796420c7d83224435393413e"
   }	,
+  {
+    "appid": "570940",
+    "name": "DARK SOULS™: REMASTERED",
+    "img_icon_url": "d74cfa4f3a2070f45ad8ce44e5f61a6507ee00b6",
+    "img_logo_url": "fbad2989ed9549c4d456eb91fb28e0e6da54af9c"
+  }
 ];
 
 const seedGame = () => Game.bulkCreate( gameData );

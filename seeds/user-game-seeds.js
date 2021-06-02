@@ -70,6 +70,16 @@ const userGameData = [
     "user_id": "5",
     "game_id": "5",
     "playtime": "345"
+  },
+  {
+    "user_id": "1",
+    "game_id": "6",
+    "playtime": "500"
+  },
+  {
+    "user_id": "3",
+    "game_id": "6",
+    "playtime": "689"
   }
 ];
 
