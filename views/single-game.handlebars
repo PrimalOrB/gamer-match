@@ -1,15 +1,18 @@
 
+<div class="head-card">
 {{> games-list game}}
-
+</div> 
+ 
 <div class = 'subheader'>
  <h2> People who own this game</h2>
 </div>
-
+<ol id="game-players">
 {{#each game.played_by as |user| }} 
   <li>
     {{> users-list user }}
   </li>
 {{/each}}
+</ol>
 
 {{!-- {{> users-list game.played_by}} 
 
