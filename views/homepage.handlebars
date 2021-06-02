@@ -1,0 +1,19 @@
+<ol class="games-list">
+  {{#each games as |game| }} 
+  <li>
+      <a href = '/game/{{id}}'>
+        <div class = 'card'>
+        <article class = 'game card_content'>
+          <div class="game-icon-div">
+                  <img class="game-icon" src="http://media.steampowered.com/steamcommunity/public/images/apps/{{appid}}/{{img_logo_url}}.jpg" alt="Logo of {{name}}">
+              </div>
+          <div class = 'card_title'> 
+            <p class="game-title">{{name}}</p>
+            <a href="https://store.steampowered.com/app/{{ appid }} "><p class="subtitle">Visit Game On Steam</p></a>
+          </div>
+        </article>
+      </div>
+      </a>
+  </li>
+  {{/each}}
+</ol>

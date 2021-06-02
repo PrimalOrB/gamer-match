@@ -1,0 +1,42 @@
+{
+  "name": "gamer-match",
+  "version": "1.0.0",
+  "description": "- `git clone`\r - `cd` into directory locally\r - `npm install` to install:\r   - bcrypt\r   - connect-session-sequelize\r   - dotenv\r   - express\r   - express-handlebars\r   - express-session\r   - mysql2\r   - sequelize\r - `npm install -dev` to install dev dependencies:\r   - jest\r   - nodemon",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrimalOrB/gamer-match.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PrimalOrB/gamer-match/issues"
+  },
+  "homepage": "https://github.com/PrimalOrB/gamer-match#readme",
+  "dependencies": {
+    "@passport-next/passport-openid": "^1.0.0",
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "mysql2": "^2.2.5",
+    "node-fetch": "^2.6.1",
+    "passport-steam": "^1.0.15",
+    "sequelize": "^6.6.2",
+    "steam-web": "^0.4.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.1",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1"
+  }
+}

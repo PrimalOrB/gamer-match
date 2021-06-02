@@ -1,0 +1,18 @@
+<a href = '/game/{{id}}'>
+    <div class = 'card'>
+      <article class = 'game card_content'>
+        <div class="game-logo-div">
+                <img class="game-logo" src="http://media.steampowered.com/steamcommunity/public/images/apps/{{appid}}/{{img_icon_url}}.jpg" alt="Logo of {{name}}">
+            </div>
+        <div class = 'card_title'> 
+          <p class="game-title">{{name}}</p>
+          <a href="https://store.steampowered.com/app/{{ appid }} "><p class="subtitle">Visit Game On Steam</p></a>
+        </div>
+        <div class = 'card_text'>
+          <p class="small">Played</p>
+          <p class="playtime">{{usergame.playtime}}</p>
+          <p class="small">Hours</p>
+        </div>
+      </article>
+    </div>
+</a>

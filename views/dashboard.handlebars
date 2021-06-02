@@ -1,0 +1,11 @@
+
+<div class = 'subheader'>
+    <h2>Games You Own This page is currently hardcoded to User id5</h2>
+</div>
+<ol id="dash-ol">
+{{#each user.games_played as |game|}}
+<li>
+    {{> games-list game}}
+    </li>
+{{/each}}
+</ol>

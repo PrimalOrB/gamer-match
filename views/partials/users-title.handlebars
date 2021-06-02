@@ -1,0 +1,18 @@
+{{!-- user passed from single-game.handlebars --}}
+<a href = '/user/{{id}}'>
+    <div class = 'card'>
+        <article class = 'user card_content'>
+            <div class="user-avatar-div">
+                <img class="user-avatar" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f1/{{avatarhash}}_medium.jpg" alt="" srcset="">
+            </div>
+            <div class = 'card_title'>
+                <p class="user-title">{{username}}</p>
+                <a href="{{ profileurl }} "><p class="subtitle">Visit Steam Profile</p></a>
+            </div>
+        </article>
+    </div>
+</a>
+
+
+{{!-- link structure for steam profile
+<a href = '{{profileurl}}' target = '_blank'></a> --}}

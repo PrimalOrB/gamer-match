@@ -1,0 +1,384 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* border: 1px solid black; */
+}
+
+body,
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  color: #333;
+  background-color: #ffffff;
+}
+
+main {
+  background-color: #f6f4f4;
+  /* margin: 0 3vw; */
+  background: rgb(225, 225, 225);
+  background: linear-gradient(
+    to right,
+    rgba(225, 225, 225, 0) 0%,
+    rgba(225, 225, 225, 1) 25%,
+    rgba(225, 225, 225, 1) 75%,
+    rgba(225, 225, 225, 0) 100%
+  );
+}
+
+a {
+  text-decoration: none;
+  color: #5b0b66;
+  font-weight: bold;
+  font-size: 100%;
+  transition: color 0.1s;
+  display: flex;
+}
+
+ol {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style: none;
+  width: 80%;
+  margin: 0.5rem 0;
+}
+
+a:hover {
+  color: #c921e0;
+}
+
+button {
+  background-color: #225ca3;
+  border: 0;
+  padding: 1%;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.1s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #3486eb;
+}
+
+.post-list {
+  margin: 0;
+  padding: 0;
+}
+
+textarea,
+input {
+  padding: 0.5%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  border: 1px solid #3486eb;
+}
+
+textarea {
+  min-width: 40%;
+  min-height: 100px;
+}
+
+form > div {
+  margin-bottom: 2%;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  border-bottom: 1px solid rgb(80, 80, 80);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1%;
+}
+
+header h1 {
+  font-size: 2em;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  margin: 10px;
+}
+
+main {
+  flex: 1;
+  /* padding: 2% 4%; */
+}
+
+.btn-no-style {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: #225ca3;
+  font-size: 100%;
+  font-weight: bold;
+  transition: color 0.1s;
+  margin-left: 16px;
+}
+
+.btn-no-style:hover {
+  background: none;
+  color: #3486eb;
+}
+
+.delete-post-btn {
+  background-color: #d41414;
+}
+
+.delete-post-btn:hover {
+  background-color: #ff643d;
+}
+
+.post {
+  margin-bottom: 2%;
+  line-height: 150%;
+}
+
+.post .title span {
+  font-style: italic;
+  font-size: 90%;
+  color: #7d7d7d;
+}
+
+.edit-link {
+  display: block;
+  margin: -1.5% 0 2% 0;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  background-color: #fff5eb;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+.user-avatar-div,
+.game-logo-div {
+  width: 64px;
+  height: 64px;
+  margin: 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  border: 1px solid black;
+  overflow: hidden;
+  flex: 1;
+}
+
+.game-icon-div {
+  width: 184px;
+  height: 69px;
+  margin: 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  border: 1px solid black;
+  overflow: hidden;
+  flex: 1;
+}
+
+.card_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card_title {
+  align-items: center;
+  font-size: 100%;
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+}
+
+.card_text {
+  height: 64px;
+  margin: 0.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: 1px solid black;
+  background-color: rgb(80, 80, 80);
+  overflow: hidden;
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+#game-players .card,
+#user-games .card {
+  border-radius: 1rem;
+  padding: 0;
+}
+
+#game-players .card_title,
+#user-games .card_title {
+  flex: 6;
+  margin-left: 1rem;
+  align-items: flex-start;
+}
+
+.card_title a,
+.card_title a {
+  margin: 0.25rem 0;
+}
+
+.user-avatar,
+.game-logo {
+  width: 100%;
+  height: 100%;
+}
+
+#game-players .card_text,
+#user-games .card_text {
+  height: 64px;
+  margin: 0.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: 1px solid black;
+  background-color: rgb(80, 80, 80);
+  overflow: hidden;
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.playtime {
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: bold;
+  flex: 2;
+}
+
+.small {
+  font-size: 0.6rem;
+  text-align: center;
+  font-weight: lighter;
+  flex: 1;
+}
+
+.card:hover {
+  background-color: #7fb8ff;
+}
+
+.comment-form {
+  margin-bottom: 5%;
+}
+
+.comment {
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+.comment:nth-child(odd) {
+  background-color: #fff5eb;
+}
+
+.comment .meta {
+  font-size: 90%;
+  margin-bottom: 0.5%;
+  opacity: 0.6;
+}
+
+.new-post-form input {
+  width: 300px;
+}
+
+.edit-post-form {
+  margin-bottom: 5%;
+}
+
+footer {
+  border-top: 1px solid rgb(80, 80, 80);
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+  font-size: 110%;
+}
+
+/* img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 75px;
+  margin-right: 20px;
+} */
+
+.head-card {
+  margin-top: 1rem;
+}
+
+.subheader {
+  text-align: center;
+  margin-top: 0.5rem;
+  border-bottom: 1px solid rgb(80, 80, 80);
+  border-width: 50%;
+  padding: auto;
+  margin-top: 1rem;
+}
+
+.user-title,
+.game-title {
+  font-size: 1.4rem;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+}
+
+.loader {
+  border: 16px solid #dfb4e5;
+  border-top: 16px solid #5b0b66;
+  border-bottom: 16px solid #5b0b66;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: 20vw auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
