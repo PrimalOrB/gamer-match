@@ -9,28 +9,35 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">Gamer Match Maker {{user.displayName}}</a>
-      </h1>
-      <nav>
-        {{#if loggedIn}}
-        <a href="/dashboard">Dashboard</a>
-        <button id="logout" class="btn-no-style">Logout</button>
-        {{else}}
-        <a href="/login">Login</a> 
-        <a href="/dashboard">Dashboard</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
+  <header>
+    <div class="banner-wrap">
+
+      <a href="/">
+        <h1>Gamer Match Maker {{user.displayName}}</h1>
+      </a>
+
+
+      {{!-- <div class="wrapper"> --}}
+        <nav>
+          {{#if loggedIn}}
+          <button id="logout" class="btn-no-style">Logout</button>
+          <a href="/dashboard">Dashboard</a>
+          {{else}}
+          <a href="/login">Login</a>
+          {{/if}}
+        </nav>
+        {{!--
+      </div> --}}
+  </header>
+  <main>
+    {{{ body }}}
+  </main>
   </div>
+  <footer>
+    <div class="banner-wrap">
+      Thanks for visiting!
+    </div>
+  </footer>
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
   {{/if}}
