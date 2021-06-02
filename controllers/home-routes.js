@@ -35,6 +35,11 @@ router.get('/', (req, res) => {
         })
         .catch(err => console.log(err));
       }
+      if (!dbGameData) {
+        res.render('empty', {
+          user: req.user.displayName
+        })
+      }
         res.render('homepage', {
           games,
           user: req.user

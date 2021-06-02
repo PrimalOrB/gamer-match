@@ -14,8 +14,10 @@ const getOwnedGames = function (steamID, user_id) {
       //parse the list of games
       response.json().then((data) => {
         let playerGameData = data.response.games;
+        if (!playerGameData) {
+          fetch('http://localhost:3001/')
+        }
         postGameData(playerGameData, user_id);
-        //  postUserGameData(steamID);
       });
     }
   });
@@ -71,7 +73,7 @@ const postUserGameData = function (gameArray, user_id, playerGameData) {
   }
 
   fetch('http://localhost:3001/api/usergames', {
-      method: 'put',
+      method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
