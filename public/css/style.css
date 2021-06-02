@@ -362,10 +362,12 @@ footer {
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
-    
   }
   .playtime{
     font-size: 80%;
     margin: 0 .2rem;
+  }
+  .game-logo-div, .game-icon-div, .user-avatar-div{
+    border-radius: 0.5rem;
   }
 }
