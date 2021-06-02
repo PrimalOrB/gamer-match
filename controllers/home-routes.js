@@ -168,6 +168,8 @@ router.get('/user/:id', (req, res) => {
 router.get('/loading', (req, res) => {
   res.render('loading');
 });
+
+
 //      ***catch unspeced urls***
 // router.get('*', ( req, res ) => {
 //   Game.findAll({
