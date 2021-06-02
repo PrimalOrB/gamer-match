@@ -64,7 +64,7 @@ const postUserGameData = function (gameArray, user_id, playerGameData) {
         {
           user_id,
           game: gameArray[i],
-          playtime: playerGameData[i].playtime_forever  
+          playtime: playerGameData[i].playtime_forever / 60  
         } 
       ]
       }
