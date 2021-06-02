@@ -42,8 +42,8 @@ router.get('/', (req, res) => {
       }
         res.render('homepage', {
           games,
-          user: req.user
-          // loggedIn: req.session.loggedIn
+          user: req.user,
+          loggedIn: req.session.loggedIn
         })
       })
       .catch(err => {
@@ -125,8 +125,11 @@ router.get('/game/:id', (req, res) => {
       }
 
       const game = dbGameData.get({ plain: true });
+      const user = this.user
+      console.log(user);
       res.render('single-game', {
         game,
+        user
       });
     })
     .catch((err) => {
