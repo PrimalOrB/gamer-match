@@ -44,7 +44,7 @@ const postGameData = function (playerGameData, user_id) {
       .then(function (json) {
         json[0].input_index = counter;
         counter++;
-        gameArray.push(json[0].input_index);
+        gameArray.push(json[0].game_id);
         return gameArray;
       })
       .then(gameArray => postUserGameData(gameArray, user_id.user_id, playerGameData)
@@ -60,6 +60,7 @@ const postUserGameData = function (gameArray, user_id, playerGameData) {
       user_id, 
       gameIds: [
         {
+          user_id,
           game: gameArray[i],
           playtime: playerGameData[i].playtime_forever  
         } 
@@ -67,11 +68,10 @@ const postUserGameData = function (gameArray, user_id, playerGameData) {
       }
     )
     games = gameInfo[i];
-    console.log(games);
   }
 
   fetch('http://localhost:3001/api/usergames', {
-      method: 'PUT',
+      method: 'put',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
