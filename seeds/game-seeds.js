@@ -36,6 +36,12 @@ const gameData = [
     "name": "DARK SOULS™: REMASTERED",
     "img_icon_url": "d74cfa4f3a2070f45ad8ce44e5f61a6507ee00b6",
     "img_logo_url": "fbad2989ed9549c4d456eb91fb28e0e6da54af9c"
+  },
+  {
+    "appid": "1328670",
+    "name": "Mass Effect™ Legendary Edition",
+    "img_icon_url": "e7bd90b2f3bff714b347468687efd7e1d53683af",
+    "img_logo_url": "e7bd90b2f3bff714b347468687efd7e1d53683af"
   }
 ];
 
