@@ -33,7 +33,7 @@ const postGameData = function (playerGameData, user_id) {
       img_logo_url: games.img_logo_url,
     };
     // add data from the steam db to our local db
-    fetch('http://localhost:3001/api/games/check', {
+    fetch('http://localhost:3001/api/games/check', {//check if game exists already in local db, and return game index id. if no create game first
       method: 'POST',
       headers: {
         Accept: 'application/json',

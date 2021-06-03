@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       const games = dbGameData.map((game) => game.get({ plain: true }));
       // if there is a user logged in, populate the homepage with their owned games instead
       if (req.user) {
-        fetch('http://localhost:3001/api/users/check', {
+        fetch('http://localhost:3001/api/users/check', {// checks if user already exists in local db, if yes return user index id, if no create a user first
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
           }),
         }).then((response) => response.json())
         .then(json => {
-          getOwnedGames(req.user._json.steamid, json)
+          getOwnedGames(req.user._json.steamid, json)// json = req.user._json.id
         })
         .catch(err => console.log(err));
       }
