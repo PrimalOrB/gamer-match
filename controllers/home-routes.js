@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
   })
     .then((dbGameData) => {
       const games = dbGameData.map((game) => game.get({ plain: true }));
-
+      // if there is a user logged in, populate the homepage with their owned games instead
       if (req.user) {
         fetch('http://localhost:3001/api/users/check', {
           method: 'POST',

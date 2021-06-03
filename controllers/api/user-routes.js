@@ -94,7 +94,7 @@ router.post('/check', ( req, res ) => {
     const user = {}
     
         // promise check each index against current games list
-    const promises = data.map( x => {
+    const promises = data.map( x => {//x will represent each element in data
         return User.findOne( {
                     where: {
                         steamid: x.steamid
