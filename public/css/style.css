@@ -363,9 +363,21 @@ footer {
     transform: rotate(360deg);
   }
 }
-
+@media screen and (max-width: 768px) {
+  ol{
+    width: 85%;
+    margin: auto;
+  }
+  header{
+    padding: 10px;
+  }
+}
 
 @media screen and (max-width: 375px) {
+
+  ol{
+    width: 95%;
+  }
 
   .card_content{
     flex-direction: column;
