@@ -12,12 +12,12 @@ html {
   margin: 0;
   font-family: sans-serif;
   color: #333;
-  background-color: #ffffff;
-  background-image: url('https://www.wallpapertip.com/wmimgs/49-490546_retro-video-game-background.png');
+  /* background-color: #ffffff; */
+  /* background-image: url('https://www.wallpapertip.com/wmimgs/49-490546_retro-video-game-background.png');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; */
 }
 
 body {
@@ -27,14 +27,21 @@ body {
   align-items: center;
 }
 
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -5;
+}
+
 main {
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
    rgba(59,3,120,0) 0%,
    rgba(111,34,193,.85) 15%,
    rgba(111,34,193,.85) 85%,
     rgba(59,3,120,0) 100%
-  );
+  ); */
   flex: 1;
   width: 100%;
   max-width: 1000px;
