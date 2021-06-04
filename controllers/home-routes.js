@@ -155,7 +155,7 @@ router.get('/user/:id', (req, res) => {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
-
+      console.log('hello');
       const user = dbUserData.get({ plain: true });
       res.render('single-user', {
         user,
