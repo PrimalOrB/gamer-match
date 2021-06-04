@@ -160,6 +160,7 @@ router.get('/user/:id', (req, res) => {
       res.render('single-user', {
         user,
       });
+      console.log('hello');
     })
     .catch((err) => {
       console.log(err);
