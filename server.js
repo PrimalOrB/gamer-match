@@ -41,7 +41,7 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
 passport.use(new SteamStrategy({
-   returnURL: 'https://obscure-harbor-51207.herokuapp.com//auth/steam/return',    // will need updating
+   returnURL: 'https://obscure-harbor-51207.herokuapp.com/auth/steam/return',    // will need updating
    realm: 'https://obscure-harbor-51207.herokuapp.com/',                         // will need updating
    apiKey: process.env.API_KEY                              // ensure is in your .env
  },
