@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 
 //get the steam user's owned games and stats
 const getOwnedGames = function (steamID, user_id) {
+  console.log('getownedgames');
   // format the Steam API url with api key and steam username
   var apiUrl = `https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.API_KEY}&steamid=${steamID}&count=5&format=json`;
 
@@ -22,6 +23,7 @@ const getOwnedGames = function (steamID, user_id) {
 };
 
 const postGameData = function (playerGameData, user_id) {
+  console.log('postgamedata');
   //loop through the playerGameData array and grab only the relevant info
   var counter = 1;
   var gameArray = [];
@@ -54,6 +56,7 @@ const postGameData = function (playerGameData, user_id) {
 };
 
 const postUserGameData = function (gameArray, user_id, playerGameData) {
+  console.log('postusergamedata');
   let gameInfo = [];
   let games = {};
   for (i = 0; i < gameArray.length; i++) {

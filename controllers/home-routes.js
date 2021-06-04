@@ -5,6 +5,7 @@ const getOwnedGames = require('../public/javascript/app');
 
 
 router.get('/', (req, res) => {
+  console.log('hello');
   Game.findAll({
     include: [
       {
