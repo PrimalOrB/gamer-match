@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const { User, Game, UserGame } = require('../models');
 const getOwnedGames = require('../public/javascript/app');
 
+
 router.get('/', (req, res) => {
   Game.findAll({
     include: [
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
       const games = dbGameData.map((game) => game.get({ plain: true }));
       // if there is a user logged in, populate the homepage with their owned games instead
       if (req.user) {
-        fetch('http://localhost:3001/api/users/check', {
+        fetch('https://obscure-harbor-51207.herokuapp.com/api/users/check', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
