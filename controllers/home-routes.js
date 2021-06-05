@@ -100,6 +100,7 @@ router.get('/dashboard', (req, res) => {
       const user = dbUserData.get({ plain: true });
       res.render('dashboard', {
         user,
+        loggedIn: req.session.passport
       });
     })
     .catch((err) => {
@@ -135,6 +136,7 @@ router.get('/game/:id', (req, res) => {
       const game = dbGameData.get({ plain: true });
       res.render('single-game', {
         game,
+        loggedIn: req.session.passport
       });
     })
     .catch((err) => {
@@ -169,6 +171,7 @@ router.get('/user/:id', (req, res) => {
       const user = dbUserData.get({ plain: true });
       res.render('single-user', {
         user,
+        loggedIn: req.session.passport
       });
     })
     .catch((err) => {
