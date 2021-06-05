@@ -1,5 +1,6 @@
 const router = require( 'express' ).Router();
 const { Game, User, UserGame, Comment } = require( '../../models' );
+const ensureAuthenticated = require('../../utils/auth.js');
 
     // GET /api/games
 router.get('/', ( req, res ) => {
@@ -31,10 +32,12 @@ router.get('/:id', ( req, res ) => {
             {
                 model: Comment,
                 attributes: ['id', 'comment_text','createdAt'],
+
                 include: {
                     model: User,
                     attributes: ['id','username','avatarhash']
-                }
+                },
+
             }
         ],
         where: {
@@ -55,7 +58,7 @@ router.get('/:id', ( req, res ) => {
 } );
 
     // POST /api/games
-router.post('/', ( req, res ) => {
+router.post('/', ensureAuthenticated, ( req, res ) => {
     // expects { appid: 1234, name: 'bbb', img_icon_url: 'bbb', img_logo_url: 'bbb' }
     Game.create( { 
         appid: req.body.appid,
@@ -71,7 +74,7 @@ router.post('/', ( req, res ) => {
 } );
 
     // POST /api/games/check
-router.post('/check', ( req, res ) => {
+router.post('/check', ensureAuthenticated, ( req, res ) => {
     // expects array 
     const data = req.body
 
@@ -122,7 +125,7 @@ router.post('/check', ( req, res ) => {
 } );
 
     // DELETE /api/games/1
-router.delete('/:id', ( req, res ) => {
+router.delete('/:id', ensureAuthenticated, ( req, res ) => {
     Game.destroy( {
         where: {
             id: req.params.id

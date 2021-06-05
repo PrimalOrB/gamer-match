@@ -1,6 +1,7 @@
 const router = require( 'express' ).Router();
 const { User, Game, UserGame } = require( '../../models' );
 const fetch = require('node-fetch');
+const ensureAuthenticated = require('../../utils/auth');
 
     // GET /api/users
 router.get('/', ( req, res ) => {
@@ -48,7 +49,7 @@ router.get('/:id', ( req, res ) => {
 } );
 
     // GET /api/users/userbyid
-router.post('/userbyid', ( req, res ) => {
+router.post('/userbyid', ensureAuthenticated, ( req, res ) => {
     User.findOne( {    
         where: {
             steamid: req.body.steamid
@@ -68,7 +69,7 @@ router.post('/userbyid', ( req, res ) => {
 } );
 
     // POST /api/users
-router.post('/', ( req, res ) => {
+router.post('/', ensureAuthenticated, ( req, res ) => {
     // expects { username: 'bbb', steamid: 'bbb', profileurl: 'bbb', avatarhash: 'bbb' }
     User.create( { 
         username: req.body.username,
@@ -84,7 +85,7 @@ router.post('/', ( req, res ) => {
 } );
 
     // PUT /api/users/1  ( update the user avatarhash )
-router.put('/:id', ( req, res ) => { 
+router.put('/:id', ensureAuthenticated, ( req, res ) => { 
     // expects { avatarhash: 'bbb' }
     User.update( req.body, {
         where: {
@@ -106,7 +107,7 @@ router.put('/:id', ( req, res ) => {
 
 
     // POST /api/users/check
-router.post('/check', ( req, res ) => {
+router.post('/check', ensureAuthenticated, ( req, res ) => {
     // user: {steamid: steamid, username: personaname, profileurl: profileurl, avatarthash: avatarhassh}
     const data = [ req.body ]
     
@@ -178,7 +179,7 @@ router.post('/check', ( req, res ) => {
 // return;
 // }
 
-router.post( '/logout', ( req, res ) => {
+router.post( '/logout', ensureAuthenticated, ( req, res ) => {
     if( req.session.loggedIn ){
         req.session.destroy( () => {
             res.status( 204 ).end();
@@ -191,7 +192,7 @@ router.post( '/logout', ( req, res ) => {
 
 
     // DELETE /api/users/1
-router.delete('/:id', ( req, res ) => {
+router.delete('/:id', ensureAuthenticated, ( req, res ) => {
     User.destroy( {
         where: {
             id: req.params.id

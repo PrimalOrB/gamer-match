@@ -1,5 +1,6 @@
 const router = require( 'express' ).Router();
 const { UserGame, User, Game } = require( '../../models' );
+const ensureAuthenticated = require('../../utils/auth');
 
 // GET /api/usergames
 router.get('/', ( req, res ) => {
@@ -43,7 +44,7 @@ router.get('/:id', ( req, res ) => {
 } );
 
     // POST /api/usergames
-router.post('/', ( req, res ) => {
+router.post('/', ensureAuthenticated, ( req, res ) => {
     // expects { user_id: 'bbb', game_id: 'bbb', playtime: 1234 }
     UserGame.create( { 
         user_id: req.body.user_id,
@@ -58,7 +59,7 @@ router.post('/', ( req, res ) => {
 } );
 
     // PUT /api/usergames/  ( update the user games references and playtimes )
-router.put('/', ( req, res ) => { 
+router.put('/', ensureAuthenticated, ( req, res ) => { 
     // expects { user_id: 'bbb', "gameIds": [ { "game":1, "playtime":12345}, { "game":2, "playtime":12345} } ] }
     UserGame.update( req.body, {
         where: {
@@ -102,7 +103,7 @@ router.put('/', ( req, res ) => {
 
 
     // DELETE /api/usergames/1
-router.delete('/:id', ( req, res ) => {
+router.delete('/:id', ensureAuthenticated, ( req, res ) => {
     UserGame.destroy( {
         where: {
             id: req.params.id
