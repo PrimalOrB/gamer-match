@@ -5,7 +5,6 @@ const getOwnedGames = require('../public/javascript/app');
 
 
 router.get('/', (req, res) => {
-  console.log('hello');
   Game.findAll({
     include: [
       {
@@ -19,7 +18,7 @@ router.get('/', (req, res) => {
       const games = dbGameData.map((game) => game.get({ plain: true }));
       // if there is a user logged in, populate the homepage with their owned games instead
       if (req.user) {
-        fetch('http://localhost:3001/api/users/check', {// checks if user already exists in local db, if yes return user index id, if no create a user first
+        fetch('http://localhost:3001/api/users/check', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -60,6 +59,10 @@ router.get('/login', (req, res) => {
   // }
   // res.render('login');
   res.redirect('/auth/steam/');
+});
+router.get('/logout', (req,res) => {
+  req.logout();
+  res.redirect('/');
 });
 
 router.get('/dashboard', (req, res) => {
@@ -155,12 +158,10 @@ router.get('/user/:id', (req, res) => {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
-      console.log('hello');
       const user = dbUserData.get({ plain: true });
       res.render('single-user', {
         user,
       });
-      console.log('hello');
     })
     .catch((err) => {
       console.log(err);
