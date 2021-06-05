@@ -3,7 +3,9 @@ const fetch = require('node-fetch');
 const { User, Game, UserGame } = require('../models');
 const getOwnedGames = require('../public/javascript/app');
 
+
 router.get('/', (req, res) => {
+  console.log('hello');
   Game.findAll({
     include: [
       {
@@ -153,11 +155,12 @@ router.get('/user/:id', (req, res) => {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
-
+      console.log('hello');
       const user = dbUserData.get({ plain: true });
       res.render('single-user', {
         user,
       });
+      console.log('hello');
     })
     .catch((err) => {
       console.log(err);
