@@ -94,7 +94,6 @@ router.get('/dashboard', (req, res) => {
         return;
       }
       const user = dbUserData.get({ plain: true });
-      console.log(user.games_played)
       res.render('dashboard', {
         user,
         loggedIn: req.session.passport,
