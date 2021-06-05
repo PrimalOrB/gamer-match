@@ -66,7 +66,7 @@ ol {
 li {
   list-style: none;
   width: 100%;
-  margin-top: 1rem ;
+  margin-top: 1rem;
 }
 
 a:hover {
@@ -129,7 +129,7 @@ form label {
   flex-direction: column;
 }
 
-header, 
+header,
 footer {
   display: flex;
   justify-content: center;
@@ -138,8 +138,8 @@ footer {
 
 header {
   padding: 2%;
-  background-color: rgba(23,21,120,0.5);
-  border-bottom: 2px solid white;;
+  background-color: rgba(23, 21, 120, 0.5);
+  border-bottom: 2px solid white;
 }
 
 .banner-wrap {
@@ -165,7 +165,7 @@ header a {
 }
 
 nav {
-  width: 100%;  
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   /* text-align: right; */
@@ -178,7 +178,6 @@ nav a {
   /* width: auto */
   /* margin-left: 20px; */
 }
-
 
 .btn-no-style {
   background: none;
@@ -245,21 +244,6 @@ nav a {
   flex-direction: column;
 }
 
-.card_text {
-  height: 64px;
-  margin: 0.5rem;
-  border-radius: 0 0.5rem 0.5rem 0;
-  border: 1px solid black;
-  background-color: rgb(80, 80, 80);
-  overflow: hidden;
-  flex: 1;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-}
-
 #game-players .card,
 #user-games .card {
   border-radius: 1rem;
@@ -279,13 +263,13 @@ nav a {
 }
 
 .user-avatar,
-.game-logo {
+.game-logo,
+.comment-avatar {
   width: 100%;
   height: 100%;
 }
 
-#game-players .card_text,
-#user-games .card_text {
+.card_text {
   height: 64px;
   margin: 0.5rem;
   border-radius: 0 0.5rem 0.5rem 0;
@@ -298,6 +282,10 @@ nav a {
   flex-direction: column;
   align-content: center;
   justify-content: center;
+}
+
+#game-players .card_text {
+  flex: 2;
 }
 
 .playtime {
@@ -314,11 +302,84 @@ nav a {
   flex: 1;
 }
 
+#game-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
 
-footer {  
+#game-owners {
+  flex: 1;
+  padding: 0 0.5rem;
+}
+
+#game-comments {
+  flex: 1;
+  padding: 0 0.5rem;
+}
+
+#game-comments-list,
+.new-comment-form {
+  margin-top: 1rem;
+  background-color: #fff5eb;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
+  border: 1px solid black;
+}
+
+.new-comment-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.new-comment-form label {
+  text-align: center;
+}
+
+#comment-content {
+  width: 100%;
+  outline: none;
+  resize: vertical;
+  padding: 0.75rem;
+}
+
+.comment {
+  margin: 0;
+  display: flex;
+  width: 100%;
+}
+
+#game-comments-list .comment:not(:first-of-type) {
+  border-top: 1px dashed gray;
+}
+
+.comment-content {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.comment-avatar-div {
+  width: 32px;
+  height: 32px;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  overflow: hidden;
+  flex: 1;
+}
+
+.comment-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
   padding: 1%;
   font-size: 110%;
-  background-color: rgba(23,21,120,0.5);;
+  background-color: rgba(23, 21, 120, 0.5);
   color: white;
   border-top: 2px solid white;
 }
@@ -344,7 +405,7 @@ footer {
   font-size: 0.9rem;
 }
 
-.welcome-message{
+.welcome-message {
   color: white;
 }
 .loader {
@@ -367,39 +428,36 @@ footer {
   }
 }
 @media screen and (max-width: 768px) {
-  ol{
+  ol {
     width: 85%;
     margin: auto;
   }
-  header{
+  header {
     padding: 10px;
   }
 }
 
 @media screen and (max-width: 375px) {
-
-  ol{
+  ol {
     width: 95%;
   }
 
-  .card_content{
+  .card_content {
     flex-direction: column;
-    
   }
-  .card_content a p{
+  .card_content a p {
     font-size: 70%;
   }
 
-  #game-players .card_text ,
+  #game-players .card_text,
   #user-games .card_text {
     border-radius: 0.5rem;
     padding: 0.5rem;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
-
   }
   #game-players .card_title,
-  #user-games .card_title{
+  #user-games .card_title {
     word-wrap: break-word;
     height: fit-content;
     margin: 0;
@@ -409,11 +467,13 @@ footer {
     justify-content: center;
     border-radius: 0.5rem;
   }
-  .playtime{
+  .playtime {
     font-size: 80%;
-    margin: 0 .2rem;
+    margin: 0 0.2rem;
   }
-  .game-logo-div, .game-icon-div, .user-avatar-div{
+  .game-logo-div,
+  .game-icon-div,
+  .user-avatar-div {
     border-radius: 0.5rem;
   }
 }

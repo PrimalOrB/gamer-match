@@ -1,0 +1,18 @@
+<div class="comment-avatar-holder">
+<div class="comment-avatar-div">
+    <img class="comment-avatar" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f1/{{user.avatarhash}}.jpg" alt="" srcset="">
+</div>
+</div>
+<div class="comment-content">
+    <div class="comment-head">
+        <div class="comment-user">
+            <a href="/user/{{user.id}}"><p class="subtitle">{{user.username}}</p></a>
+        </div>
+        <div class="comment-date">
+            {{format_date createdAt}}
+        </div>
+    </div>
+    <div class="comment-text">
+        {{comment_text}}
+    </div>
+</div>

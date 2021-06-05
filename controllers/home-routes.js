@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Session } = require('express-session');
 const fetch = require('node-fetch');
-const { User, Game, UserGame } = require('../models');
+const { User, Game, UserGame, Comment } = require('../models');
 const getOwnedGames = require('../public/javascript/app');
 
 
@@ -122,7 +122,15 @@ router.get('/game/:id', (req, res) => {
           attributes: ['playtime'],
         },
       },
-    ],
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text','createdAt'],
+        include: {
+            model: User,
+            attributes: ['id','username','avatarhash']
+          }
+        },
+      ],
     where: {
       id: req.params.id,
     },

@@ -8,8 +8,8 @@ const util = require('util')
 const session = require('express-session')
 const ensureAuthenticated = ( './utils/helpers.js')
 const exphbs = require('express-handlebars');// for Handlebars.js
-//const helpers = require('./utils/helpers');
-const hbs = exphbs.create({ });
+const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ helpers });
 
 require( 'dotenv' ).config();
 const PORT = process.env.PORT || 3001;
