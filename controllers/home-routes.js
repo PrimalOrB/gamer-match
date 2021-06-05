@@ -3,6 +3,7 @@ const { Session } = require('express-session');
 const fetch = require('node-fetch');
 const { User, Game, UserGame } = require('../models');
 const getOwnedGames = require('../public/javascript/app');
+const sequelize = require('sequelize');
 
 
 router.get('/', (req, res) => {
@@ -42,7 +43,7 @@ router.get('/', (req, res) => {
         res.render('homepage', {
           games,
           user: req.user,
-          loggedIn: req.session.passport
+          loggedIn: req.session.passport,
         })
       })
       .catch(err => {
