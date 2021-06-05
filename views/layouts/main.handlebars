@@ -18,8 +18,9 @@
       </a>
       {{!-- <div class="wrapper"> --}}
         <nav>
+
           {{#if loggedIn}}
-          <p class = 'welcome-message'>Hello {{user.displayName}}!</p>
+          <p class = 'welcome-message'>Hello {{loggedIn.user.displayName}}!</p>          
           <a href="/dashboard">Dashboard</a>
           <a href='/logout'>Logout</a>
           {{else}}
