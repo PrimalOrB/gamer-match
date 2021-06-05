@@ -21,10 +21,11 @@
       {{!-- <div class="wrapper"> --}}
         <nav>
           {{#if loggedIn}}
-          <button id="logout" class="btn-no-style">Logout</button>
+          <a href='/logout'>Logout</a>
           <a href="/dashboard">Dashboard</a>
           {{else}}
           <a href="/login">Login</a>
+          <a href='/logout'>Logout</a>
           {{/if}}
         </nav>
         {{!--
