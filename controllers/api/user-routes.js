@@ -89,7 +89,7 @@ router.put('/:id', ( req, res ) => {
 router.post('/check', ( req, res ) => {
     // user: {steamid: steamid, usernamg: personaname, profileurl: profileurl, avatarthash: avatarhassh}
     const data = [ req.body ]
-
+    
         // object to collect game data 
     const user = {}
     

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Session } = require('express-session');
 const fetch = require('node-fetch');
 const { User, Game, UserGame } = require('../models');
 const getOwnedGames = require('../public/javascript/app');
@@ -17,6 +18,7 @@ router.get('/', (req, res) => {
     .then((dbGameData) => {
       const games = dbGameData.map((game) => game.get({ plain: true }));
       // if there is a user logged in, populate the homepage with their owned games instead
+      
       if (req.user) {
         fetch('https://obscure-harbor-51207.herokuapp.com/api/users/check', {
           method: 'POST',
@@ -36,10 +38,11 @@ router.get('/', (req, res) => {
         })
         .catch(err => console.log(err));
       }
+         //res.json(req.user._json);
         res.render('homepage', {
           games,
-          user: req.user
-          // loggedIn: req.session.loggedIn
+          user: req.user,
+          loggedIn: req.session.passport
         })
       })
       .catch(err => {
@@ -62,10 +65,15 @@ router.get('/login', (req, res) => {
 });
 router.get('/logout', (req,res) => {
   req.logout();
+  req.session.passport = null;
+  User.findAll().then(n=>console.log(n));
   res.redirect('/');
+
+
 });
 
 router.get('/dashboard', (req, res) => {
+
   User.findOne({
     include: [
       {
@@ -80,7 +88,7 @@ router.get('/dashboard', (req, res) => {
       },
     ],
     where: {
-      id: req.session.user_id
+      username: req.session.passport.user.displayName
     },
   })
     .then((dbUserData) => {

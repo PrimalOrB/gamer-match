@@ -14,19 +14,16 @@
     <div class="banner-wrap">
 
       <a href="/">
-        <h1>Gamer Match Maker {{user.displayName}}{{user.id}}</h1>
+        <h1>Gamer Match Maker</h1>
       </a>
-
-
       {{!-- <div class="wrapper"> --}}
         <nav>
           {{#if loggedIn}}
-          <a href='/logout'>Logout</a>
+          <p class = 'welcome-message'>Hello {{user.displayName}}!</p>
           <a href="/dashboard">Dashboard</a>
+          <a href='/logout'>Logout</a>
           {{else}}
           <a href="/login">Login</a>
-          <a href='/logout'>Logout</a>
-          <a href='/dashboard'>Dashboard</a>
           {{/if}}
         </nav>
         {{!--
