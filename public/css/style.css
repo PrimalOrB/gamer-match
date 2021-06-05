@@ -428,12 +428,25 @@ footer {
   }
 }
 @media screen and (max-width: 768px) {
-  ol {
+  ol,
+  .new-comment-form {
     width: 85%;
     margin: auto;
   }
+  .new-comment-form {
+    margin-top: 1rem;
+  }
   header {
     padding: 10px;
+  }
+
+  #game-wrapper {
+    flex-direction: column;
+  }
+
+  #game-owners,
+  #game-comments {
+    padding: 0;
   }
 }
 
