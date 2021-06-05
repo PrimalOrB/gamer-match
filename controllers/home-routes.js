@@ -74,23 +74,27 @@ router.get('/dashboard', (req, res) => {
         attributes: ['id', 'appid', 'name', 'img_icon_url', 'img_logo_url'],
         through: UserGame,
         as: 'games_played',
-        include: {
-          model: UserGame,
-          attributes: ['playtime'],
-        },
+        include: [
+          {
+            model: UserGame,
+            attributes: ['playtime']
+          },
+          {
+            model: User,
+            through: UserGame,
+            as: 'played_by'
+          }
+        ],
       },
     ],
-    where: {
-      username: req.session.passport.user.displayName,
-    },
   })
     .then((dbUserData) => {
       if (!dbUserData) {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
-
       const user = dbUserData.get({ plain: true });
+      console.log(user.games_played)
       res.render('dashboard', {
         user,
         loggedIn: req.session.passport,
@@ -121,8 +125,8 @@ router.get('/game/:id', (req, res) => {
         include: {
           model: User,
           attributes: ['id', 'username', 'avatarhash'],
-        }
-      }
+        },
+      },
     ],
     where: {
       id: req.params.id,
