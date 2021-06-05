@@ -87,8 +87,12 @@ router.get('/dashboard', (req, res) => {
         ],
       },
     ],
+    where: {
+      username: req.session.passport.user.displayName
+    }
   })
     .then((dbUserData) => {
+      console.log(req.session.passport.user.displayName);
       if (!dbUserData) {
         res.status(404).json({ message: 'No user found with this id' });
         return;

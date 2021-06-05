@@ -44,7 +44,7 @@ router.get('/:id', ( req, res ) => {
 } );
 
     // POST /api/usergames
-router.post('/', ensureAuthenticated, ( req, res ) => {
+router.post('/', ( req, res ) => {
     // expects { user_id: 'bbb', game_id: 'bbb', playtime: 1234 }
     UserGame.create( { 
         user_id: req.body.user_id,
@@ -59,7 +59,7 @@ router.post('/', ensureAuthenticated, ( req, res ) => {
 } );
 
     // PUT /api/usergames/  ( update the user games references and playtimes )
-router.put('/', ensureAuthenticated, ( req, res ) => { 
+router.put('/', ( req, res ) => { 
     // expects { user_id: 'bbb', "gameIds": [ { "game":1, "playtime":12345}, { "game":2, "playtime":12345} } ] }
     UserGame.update( req.body, {
         where: {

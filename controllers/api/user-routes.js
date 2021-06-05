@@ -69,7 +69,7 @@ router.post('/userbyid', ensureAuthenticated, ( req, res ) => {
 } );
 
     // POST /api/users
-router.post('/', ensureAuthenticated, ( req, res ) => {
+router.post('/', ( req, res ) => {
     // expects { username: 'bbb', steamid: 'bbb', profileurl: 'bbb', avatarhash: 'bbb' }
     User.create( { 
         username: req.body.username,
@@ -107,7 +107,7 @@ router.put('/:id', ensureAuthenticated, ( req, res ) => {
 
 
     // POST /api/users/check
-router.post('/check', ensureAuthenticated, ( req, res ) => {
+router.post('/check', ( req, res ) => {
     // user: {steamid: steamid, username: personaname, profileurl: profileurl, avatarthash: avatarhassh}
     const data = [ req.body ]
     

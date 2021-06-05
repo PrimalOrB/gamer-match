@@ -58,7 +58,7 @@ router.get('/:id', ( req, res ) => {
 } );
 
     // POST /api/games
-router.post('/', ensureAuthenticated, ( req, res ) => {
+router.post('/', ( req, res ) => {
     // expects { appid: 1234, name: 'bbb', img_icon_url: 'bbb', img_logo_url: 'bbb' }
     Game.create( { 
         appid: req.body.appid,
@@ -74,7 +74,7 @@ router.post('/', ensureAuthenticated, ( req, res ) => {
 } );
 
     // POST /api/games/check
-router.post('/check', ensureAuthenticated, ( req, res ) => {
+router.post('/check', ( req, res ) => {
     // expects array 
     const data = req.body
 
