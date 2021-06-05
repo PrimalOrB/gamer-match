@@ -69,7 +69,7 @@ app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 app.use(session({
    secret: 'your secret',
-   name: 'name of session id,
+   name: 'name of session id',
    resave: true,
    saveUninitialized: true}));
 
