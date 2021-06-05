@@ -138,7 +138,7 @@ footer {
 
 header {
   padding: 2%;
-  background-color: #171578;
+  background-color: rgba(23,21,120,0.5);
   border-bottom: 2px solid white;;
 }
 
@@ -318,7 +318,7 @@ nav a {
 footer {  
   padding: 1%;
   font-size: 110%;
-  background-color: #171578;
+  background-color: rgba(23,21,120,0.5);;
   color: white;
   border-top: 2px solid white;
 }
@@ -344,6 +344,9 @@ footer {
   font-size: 0.9rem;
 }
 
+.welcome-message{
+  color: white;
+}
 .loader {
   border: 16px solid #dfb4e5;
   border-top: 16px solid #5b0b66;
