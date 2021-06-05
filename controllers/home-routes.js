@@ -56,24 +56,17 @@ router.get('/', (req, res) => {
   });
 
 router.get('/login', (req, res) => {
-  // if (req.session.loggedin) {
-  //     res.redirect('/');
-  //     return;// return to the homepage if we are already loggined in
-  // }
-  // res.render('login');
   res.redirect('/auth/steam/');
 });
+
 router.get('/logout', (req,res) => {
   req.logout();
   req.session.passport = null;
   User.findAll().then(n=>console.log(n));
   res.redirect('/');
-
-
 });
 
 router.get('/dashboard', (req, res) => {
-
   User.findOne({
     include: [
       {

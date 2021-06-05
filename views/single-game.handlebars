@@ -26,7 +26,7 @@
     <form class="new-comment-form" autocomplete="off">
         <div id="comment-div">
             <label for="comment-content">New Comment</label>
-            <textarea id="comment-content" name="post-content" rows="2" /></textarea>
+            <textarea id="comment-content" name="comment-content" rows="2" /></textarea>
         </div>
         <button type="submit" class="btn">Post</button>
     </form>
@@ -41,3 +41,7 @@
   </div>
 
 </div>
+
+{{#if loggedIn}}
+<script src="/javascript/add-comment.js"></script>
+{{/if}}

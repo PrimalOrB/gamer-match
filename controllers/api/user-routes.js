@@ -47,6 +47,26 @@ router.get('/:id', ( req, res ) => {
     })
 } );
 
+    // GET /api/users/userbyid
+router.post('/userbyid', ( req, res ) => {
+    User.findOne( {    
+        where: {
+            steamid: req.body.steamid
+        }
+    } )
+    .then( dbUserData => {
+        if( !dbUserData ) {
+            res.status( 404 ).json( { message: 'No user found with this steamid' } );
+            return;
+        }
+        res.json( dbUserData );
+    } )
+    .catch( err => {
+        console.log( err );
+        res.status( 500 ).json( err );
+    })
+} );
+
     // POST /api/users
 router.post('/', ( req, res ) => {
     // expects { username: 'bbb', steamid: 'bbb', profileurl: 'bbb', avatarhash: 'bbb' }
@@ -87,7 +107,7 @@ router.put('/:id', ( req, res ) => {
 
     // POST /api/users/check
 router.post('/check', ( req, res ) => {
-    // user: {steamid: steamid, usernamg: personaname, profileurl: profileurl, avatarthash: avatarhassh}
+    // user: {steamid: steamid, username: personaname, profileurl: profileurl, avatarthash: avatarhassh}
     const data = [ req.body ]
     
         // object to collect game data 
@@ -136,6 +156,7 @@ router.post('/check', ( req, res ) => {
       } )
     
 } );
+
 
 // // if user does not exist
 // if( !dbUserData ) {
