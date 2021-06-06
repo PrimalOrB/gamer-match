@@ -41,8 +41,8 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
 passport.use(new SteamStrategy({
-   returnURL: 'http://localhost:3001/auth/steam/return',    // will need updating
-   realm: 'http://localhost:3001',                         // will need updating
+   returnURL: 'https://damp-tor-80298.herokuapp.com/auth/steam/return',    // will need updating
+   realm: 'https://damp-tor-80298.herokuapp.com/',                         // will need updating
    apiKey: process.env.API_KEY                              // ensure is in your .env
  },
  function(identifier, profile, done) {
