@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
       // if there is a user logged in, populate the homepage with their owned games instead
 
       if (req.user) {
-        fetch('http://localhost:3001/api/users/check', {
+        fetch('https://damp-tor-80298.herokuapp.com/api/users/check', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
