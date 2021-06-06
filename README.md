@@ -1,4 +1,5 @@
 # Gamer Match
+https://damp-tor-80298.herokuapp.com/
 
 ## Installation
 
@@ -33,6 +34,9 @@
 - `npm run watch` to launch server using nodemon
 - `npm run seed` to seed database with filler data
 
+## Screenshot 
+![Screenshot 2021-06-06 125152](https://user-images.githubusercontent.com/78888642/120933984-8317ca80-c6ca-11eb-8897-0cc01c4aaa30.png)
+
 ## Current DB
 
 - GET /api/users
@@ -53,3 +57,8 @@
 - CREATE /api/usergames - { user_id, game_id, playtime }
 - UPDATE /api/games/check - [ { appid, name, img_icon_url, img_logo_url }, { appid, name, img_icon_url, img_logo_url } ] (send an array for games to check. Either return index/id of existing games, or return index/id of newly created games)
 - DELETE /api/usergames/:id
+
+## Built By
+[Fanxi Liao](https://github.com/liaof)
+[Andrew Ogilvie](https://github.com/PrimalOrB)
+[Andrew Power](https://github.com/powerar)
