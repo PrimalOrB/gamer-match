@@ -16,28 +16,6 @@ router.get('/', (req, res) => {
   })
     .then((dbGameData) => {
       const games = dbGameData.map((game) => game.get({ plain: true }));
-      // if there is a user logged in, populate the homepage with their owned games instead
-
-      if (req.user) {
-        fetch('http://localhost:3001/api/users/check', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            steamid: req.user._json.steamid,
-            username: req.user._json.personaname,
-            profileurl: req.user._json.profileurl,
-            avatarhash: req.user._json.avatarhash,
-          }),
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            getOwnedGames(req.user._json.steamid, json); // json = req.user._json.id
-          })
-          .catch((err) => console.log(err));
-      }
       //res.json(req.user._json);
       res.render('homepage', {
         games,
@@ -187,7 +165,25 @@ router.get('/user/:id', (req, res) => {
 });
 
 router.get('/loading', (req, res) => {
-  res.render('loading');
+  fetch('http://localhost:3001/api/users/check', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      steamid: req.user._json.steamid,
+      username: req.user._json.personaname,
+      profileurl: req.user._json.profileurl,
+      avatarhash: req.user._json.avatarhash,
+    }),
+  })
+  .then(response => response.json())
+  .then(json => {
+    getOwnedGames(req.user._json.steamid, json);
+  })
+  .then(res.redirect('/'))
+  .catch(err => console.log(err));
 });
 
 //      ***catch unspeced urls***
