@@ -32,11 +32,12 @@
     "node-fetch": "^2.6.1",
     "passport-steam": "^1.0.15",
     "sequelize": "^6.6.2",
-    "steam-web": "^0.4.0"
+    "steam-web": "^0.4.0",
+    "passport": "0.4.1"
   },
   "devDependencies": {
     "jest": "^27.0.1",
-    "nodemon": "^2.0.7",
-    "passport": "^0.4.1"
+    "nodemon": "^2.0.7"
+    
   }
 }

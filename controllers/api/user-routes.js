@@ -1,6 +1,7 @@
 const router = require( 'express' ).Router();
 const { User, Game, UserGame } = require( '../../models' );
 const fetch = require('node-fetch');
+const ensureAuthenticated = require('../../utils/auth');
 
     // GET /api/users
 router.get('/', ( req, res ) => {
@@ -47,6 +48,26 @@ router.get('/:id', ( req, res ) => {
     })
 } );
 
+    // GET /api/users/userbyid
+router.post('/userbyid', ensureAuthenticated, ( req, res ) => {
+    User.findOne( {    
+        where: {
+            steamid: req.body.steamid
+        }
+    } )
+    .then( dbUserData => {
+        if( !dbUserData ) {
+            res.status( 404 ).json( { message: 'No user found with this steamid' } );
+            return;
+        }
+        res.json( dbUserData );
+    } )
+    .catch( err => {
+        console.log( err );
+        res.status( 500 ).json( err );
+    })
+} );
+
     // POST /api/users
 router.post('/', ( req, res ) => {
     // expects { username: 'bbb', steamid: 'bbb', profileurl: 'bbb', avatarhash: 'bbb' }
@@ -64,7 +85,7 @@ router.post('/', ( req, res ) => {
 } );
 
     // PUT /api/users/1  ( update the user avatarhash )
-router.put('/:id', ( req, res ) => { 
+router.put('/:id', ensureAuthenticated, ( req, res ) => { 
     // expects { avatarhash: 'bbb' }
     User.update( req.body, {
         where: {
@@ -87,14 +108,14 @@ router.put('/:id', ( req, res ) => {
 
     // POST /api/users/check
 router.post('/check', ( req, res ) => {
-    // user: {steamid: steamid, usernamg: personaname, profileurl: profileurl, avatarthash: avatarhassh}
+    // user: {steamid: steamid, username: personaname, profileurl: profileurl, avatarthash: avatarhassh}
     const data = [ req.body ]
-
+    
         // object to collect game data 
     const user = {}
     
         // promise check each index against current games list
-    const promises = data.map( x => {
+    const promises = data.map( x => {//x will represent each element in data
         return User.findOne( {
                     where: {
                         steamid: x.steamid
@@ -137,6 +158,7 @@ router.post('/check', ( req, res ) => {
     
 } );
 
+
 // // if user does not exist
 // if( !dbUserData ) {
 //     // create new user
@@ -157,10 +179,20 @@ router.post('/check', ( req, res ) => {
 // return;
 // }
 
+router.post( '/logout', ensureAuthenticated, ( req, res ) => {
+    if( req.session.loggedIn ){
+        req.session.destroy( () => {
+            res.status( 204 ).end();
+        } );
+    } else {
+        res.status( 404 ).end();
+    }
+} )
+
 
 
     // DELETE /api/users/1
-router.delete('/:id', ( req, res ) => {
+router.delete('/:id', ensureAuthenticated, ( req, res ) => {
     User.destroy( {
         where: {
             id: req.params.id

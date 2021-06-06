@@ -8,8 +8,8 @@ const util = require('util')
 const session = require('express-session')
 const ensureAuthenticated = ( './utils/helpers.js')
 const exphbs = require('express-handlebars');// for Handlebars.js
-//const helpers = require('./utils/helpers');
-const hbs = exphbs.create({ });
+const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ helpers });
 
 require( 'dotenv' ).config();
 const PORT = process.env.PORT || 3001;
@@ -42,7 +42,7 @@ passport.deserializeUser(function(obj, done) {
 //   callback with a user object.
 passport.use(new SteamStrategy({
    returnURL: 'http://localhost:3001/auth/steam/return',    // will need updating
-   realm: 'http://localhost:3001/',                         // will need updating
+   realm: 'http://localhost:3001',                         // will need updating
    apiKey: process.env.API_KEY                              // ensure is in your .env
  },
  function(identifier, profile, done) {

@@ -22,6 +22,7 @@ const getOwnedGames = function (steamID, user_id) {
 };
 
 const postGameData = function (playerGameData, user_id) {
+ 
   //loop through the playerGameData array and grab only the relevant info
   var counter = 1;
   var gameArray = [];
@@ -32,6 +33,7 @@ const postGameData = function (playerGameData, user_id) {
       img_icon_url: games.img_icon_url,
       img_logo_url: games.img_logo_url,
     };
+    // add data from the steam db to our local db
     fetch('http://localhost:3001/api/games/check', {
       method: 'POST',
       headers: {
@@ -40,9 +42,9 @@ const postGameData = function (playerGameData, user_id) {
       },
       body: JSON.stringify([game]),
     })
-      .then((response) => response.json())
+      .then((response) => response.json())//
       .then(function (json) {
-        json[0].input_index = counter;
+        json[0].input_index = counter;//replaced fetched index which may be random and nonsequential with our own sequential index
         counter++;
         gameArray.push(json[0].game_id);
         return gameArray;
@@ -69,7 +71,7 @@ const postUserGameData = function (gameArray, user_id, playerGameData) {
     )
     games = gameInfo[i];
   }
-
+  // add data from the steam db to our local db
   fetch('http://localhost:3001/api/usergames', {
       method: 'put',
       headers: {

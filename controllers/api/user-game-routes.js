@@ -1,5 +1,6 @@
 const router = require( 'express' ).Router();
 const { UserGame, User, Game } = require( '../../models' );
+const ensureAuthenticated = require('../../utils/auth');
 
 // GET /api/usergames
 router.get('/', ( req, res ) => {
@@ -102,7 +103,7 @@ router.put('/', ( req, res ) => {
 
 
     // DELETE /api/usergames/1
-router.delete('/:id', ( req, res ) => {
+router.delete('/:id', ensureAuthenticated, ( req, res ) => {
     UserGame.destroy( {
         where: {
             id: req.params.id
